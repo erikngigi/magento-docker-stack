@@ -48,9 +48,12 @@ RUN groupadd -g 1000 magento && \
     useradd -u 1000 -ms /bin/bash -g magento magento && \
     chown -R magento:magento /var/www/html
 
+# Set working directory
+WORKDIR /var/www/html
+
 # Switch to non-root user
 USER magento
 
-# Expose port 9100 and start php-fpm
-EXPOSE 9100
+# Expose port 9000 and start php-fpm
+EXPOSE 9000
 CMD ["php-fpm"]
