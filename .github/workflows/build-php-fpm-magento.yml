@@ -5,6 +5,12 @@ on:
     paths:
       - 'docker/php-fpm/**'
       - '.github/workflows/build-php-fpm-magento.yml'
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Custom tag for the image (optional)'
+        required: false
+        default: 'latest'
 jobs:
   build:
     runs-on: ubuntu-latest
