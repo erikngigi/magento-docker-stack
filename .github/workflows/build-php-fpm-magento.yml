@@ -32,6 +32,6 @@ jobs:
           context: ./docker/php-fpm
           file: ./docker/php-fpm/Dockerfile
           push: true
-          tags: ghcr.io/${{ vars.GHCR_USERNAME }}/magento-php-fpm:8.3
+          tags: ghcr.io/${{ vars.GHCR_USERNAME }}/magento-php8.3-fpm:latest
       - name: Image build complete
         run: echo "✅ PHP-FPM Magento Docker image built and pushed successfully."
