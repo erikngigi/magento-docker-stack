@@ -5,7 +5,7 @@ services:
     volumes:
       - ./src:/var/www/html
     expose:
-      - "9100"
+      - "9000"
   nginx:
     image: ghcr.io/erikngigi/magento-nginx-1.29:latest
     container_name: magento-nginx
