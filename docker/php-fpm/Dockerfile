@@ -65,14 +65,9 @@ RUN zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/i
 # Set default shell to Zsh
 SHELL [ "/usr/bin/zsh", "-c" ]
 
-# Copy entrypoint script
-COPY ./templates/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
 # Set working directory
 WORKDIR /var/www/html
 
 # Expose port 9000 and start php-fpm
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 9000
 CMD ["php-fpm"]
