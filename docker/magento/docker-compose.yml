@@ -1,6 +1,7 @@
 services:
   php-fpm:
     image: ghcr.io/erikngigi/magento-php8.3-fpm:latest
+    hostname: magento-php-fpm
     container_name: magento-php-fpm
     volumes:
       - ./src:/var/www/html
