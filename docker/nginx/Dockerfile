@@ -9,15 +9,8 @@ LABEL Version="1.0"
 # Remove default Nginx config and copy Magento-specific ones
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy global nginx configuration for performance and stability
-COPY ./magento.conf /etc/nginx/conf.d/
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
-# Create web root directory
-RUN mkdir -p /var/www/html && chown -R nginx:nginx /var/www/html
-
 # Change working directory
-WORKDIR /var/www/html
+WORKDIR /etc/nginx
 
 # Expose nginx port and run nginx
 EXPOSE 8080

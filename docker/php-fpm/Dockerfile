@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg2 \
     bash \
     mycli \
+    vim \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install and enable third-party PHP extensions via PECL
