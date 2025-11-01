@@ -6,12 +6,26 @@ LABEL Maintainer="Eric Ngigi <cloud@ericngigi.com>"
 LABEL Description="PHP-FPM using version 8.3 for Magento 2.4.7"
 LABEL Version="1.0"
 
-# Install system dependencies, clean apt cache after installation
+# Install required system dependencies for PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential libpng-dev libjpeg62-turbo-dev libfreetype6-dev locales zip jpegoptim optipng pngquant gifsicle vim unzip git curl \
-    libonig-dev libzip-dev libgd-dev libssl-dev libxml2-dev libreadline-dev libxslt-dev supervisor bash mycli zsh gnupg2 libmagickwand-dev \
-    libmagickcore-dev less && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    libxml2-dev \
+    libxslt-dev \
+    libonig-dev \
+    libgd-dev \
+    libssl-dev \
+    libicu-dev \
+    libmagickwand-dev \
+    git \
+    unzip \
+    curl \
+    gnupg2 \
+    bash \
+    mycli \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install and enable third-party PHP extensions via PECL
 RUN pecl install imagick apcu && \
@@ -49,21 +63,8 @@ RUN groupadd -g 1000 magento && \
     mkdir -p /home/magento/.config && \
     chown -R magento:magento /var/www/html /home/magento
 
-# Copy zsh configuration
-COPY ./templates/zsh /home/magento/.config/zsh
-COPY ./templates/.zshrc /home/magento/.zshrc
-
-# Adjust ownership
-RUN chown -R magento:magento /home/magento/.config /home/magento/.zshrc
-
 # Switch to non-root user
 USER magento
-
-# Install Zap (zsh plugin manager)
-RUN zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep'
-
-# Set default shell to Zsh
-SHELL [ "/usr/bin/zsh", "-c" ]
 
 # Set working directory
 WORKDIR /var/www/html
