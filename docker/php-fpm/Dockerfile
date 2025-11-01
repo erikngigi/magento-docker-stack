@@ -9,7 +9,7 @@ LABEL Version="1.0"
 # Install system dependencies, clean apt cache after installation
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential libpng-dev libjpeg62-turbo-dev libfreetype6-dev locales zip jpegoptim optipng pngquant gifsicle vim unzip git curl \
-    libonig-dev libzip-dev libgd-dev libssl-dev libxml2-dev libreadline-dev libxslt-dev supervisor bash mycli zsh mysql gnupg2 libmagickwand-dev \
+    libonig-dev libzip-dev libgd-dev libssl-dev libxml2-dev libreadline-dev libxslt-dev supervisor bash mycli zsh mysql-server gnupg2 libmagickwand-dev \
     libmagickcore-dev less && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
