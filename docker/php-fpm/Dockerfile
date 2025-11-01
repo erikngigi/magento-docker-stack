@@ -60,7 +60,7 @@ RUN chown -R magento:magento /home/magento/.config /home/magento/.zshrc
 USER magento
 
 # Install Zap (zsh plugin manager)
-RUN zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+RUN zsh -c 'zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep'
 
 # Set default shell to Zsh
 SHELL [ "/usr/bin/zsh", "-c" ]
